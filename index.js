@@ -4,11 +4,14 @@ const pg = require('pg')
 const app = express()
 // configs come from standard PostgreSQL env vars
 // https://www.postgresql.org/docs/9.6/static/libpq-envars.html
-const pool = new pg.Pool()
+const connectionString = 'postgresql://readonly:w2UIO@#bg532!@work-samples-db.cx4wctygygyq.us-east-1.rds.amazonaws.com:5432/work_samples'
+const pool = new pg.Pool({
+	connectionString: connectionString
+})
 
 const queryHandler = (req, res, next) => {
   pool.query(req.sqlQuery).then((r) => {
-    return res.json(r.rows || [])
+	return res.json(r.rows || [])
   }).catch(next)
 }
 
