@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const pg = require('pg')
 
@@ -6,13 +7,23 @@ const app = express()
 // https://www.postgresql.org/docs/9.6/static/libpq-envars.html
 
 
+
+// const pool = new pg.Pool({
+//   user: 'readonly',
+//   host: 'work-samples-db.cx4wctygygyq.us-east-1.rds.amazonaws.com',
+//   database: 'work_samples',
+//   password: 'w2UIO@#bg532!',
+//   port: 5432,
+// })
+
 const pool = new pg.Pool({
-  user: 'readonly',
-  host: 'work-samples-db.cx4wctygygyq.us-east-1.rds.amazonaws.com',
-  database: 'work_samples',
-  password: 'w2UIO@#bg532!',
-  port: 5432,
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT,
 })
+
 
 const queryHandler = (req, res, next) => {
   pool.query(req.sqlQuery).then((r) => {
