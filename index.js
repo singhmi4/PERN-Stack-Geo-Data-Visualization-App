@@ -1,12 +1,11 @@
 require('dotenv').config()
 const express = require('express')
 const pg = require('pg')
-
+const customRedisRateLimiter = require('./middlewares/rateLimiter')
 const app = express()
+
 // configs come from standard PostgreSQL env vars
 // https://www.postgresql.org/docs/9.6/static/libpq-envars.html
-
-
 const pool = new pg.Pool({
   user: process.env.PGUSER,
   host: process.env.PGHOST,
@@ -15,12 +14,16 @@ const pool = new pg.Pool({
   port: process.env.PGPORT,
 })
 
-
 const queryHandler = (req, res, next) => {
   pool.query(req.sqlQuery).then((r) => {
     return res.json(r.rows || [])
   }).catch(next)
 }
+
+// Middlewares
+
+// Rate Limiter for all Requests
+app.use(customRedisRateLimiter)
 
 app.get('/', (req, res) => {
   res.send('Welcome to EQ Works 😎')
