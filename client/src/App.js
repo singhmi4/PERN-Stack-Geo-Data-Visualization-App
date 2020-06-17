@@ -3,13 +3,13 @@ import './App.css';
 
 // Components
 
-import ShowChart from "./components/ShowChart";
+import ShowTables from "./components/ShowTables";
 
 function App() {
   return (
    <Fragment>
 	<div className="container">
-		<ShowChart />
+		<ShowTables />
     </div>	
    </Fragment>
   );
