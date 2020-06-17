@@ -7,7 +7,8 @@ const ShowCharts = () => {
 	
 	const getChartData = async () => {
 		try {
-			const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated
+			const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated to localhost
+			// const response = await fetch("http://localhost:5555/events/hourly");
       		const jsonData = await response.json();
 			
 			setData(jsonData);
