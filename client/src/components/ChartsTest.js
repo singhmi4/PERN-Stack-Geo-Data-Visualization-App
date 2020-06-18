@@ -9,8 +9,8 @@ const ChartsTest = () => {
 	
 	const getData = async () => {
 		try {
-			const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated to localhost
-			// const response = await fetch("http://localhost:5555/events/hourly");
+			// const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated to localhost
+			const response = await fetch("http://localhost:5555/events/hourly");
       		const jsonData = await response.json();
 			
 			setData(jsonData);
@@ -27,9 +27,9 @@ const ChartsTest = () => {
 	
 	return (
 		<Fragment>
-			<LineChart width={800} height={400} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+			<LineChart width={800} height={400} data={data} className="mt-5 mx-auto" >
     			<Line type="monotone" dataKey="events" stroke="#8884d8" />
-				<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+				<CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
     			<XAxis dataKey="data_id" />
     			<YAxis />
 				<Tooltip />

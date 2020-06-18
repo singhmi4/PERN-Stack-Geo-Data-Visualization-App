@@ -3,8 +3,8 @@ import './App.css';
 
 // Components
 
-// import ShowTables from "./components/ShowTables";
-// <ShowTables />
+import ShowTables from "./components/ShowTables";
+
 import ChartsTest from "./components/ChartsTest";
 
 
@@ -13,6 +13,7 @@ function App() {
    <Fragment>
 	<div className="container">
 		<ChartsTest />
+    <ShowTables />
     </div>	
    </Fragment>
   );
