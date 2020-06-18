@@ -1,6 +1,7 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
-const ShowTables = () => {
+const ChartsTest = () => {
 	
 // 	Methods
 	
@@ -26,27 +27,15 @@ const ShowTables = () => {
 	
 	return (
 		<Fragment>
-			<h1 className="text-center mt-5">Data</h1>
-			<table className="table mt-5 text-center">
-			<thead>
-			  <tr>
-				<th>Date</th>
-				<th>Hour</th>
-				<th>Events</th>
-			  </tr>
-			</thead>
-			<tbody>			  
-			  {data.map(data => (
-				<tr key={data.data_id}>
-				  <td>{data.date}</td>
-				  <td>{data.hour}</td>
-				  <td>{data.events}</td>
-				</tr>
-			  ))}
-			</tbody>
-		  </table>
+			<LineChart width={800} height={400} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+    			<Line type="monotone" dataKey="events" stroke="#8884d8" />
+				<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+    			<XAxis dataKey="data_id" />
+    			<YAxis />
+				<Tooltip />
+  			</LineChart>
 		</Fragment>
 	)
 }
 
-export default ShowTables;
+export default ChartsTest;
