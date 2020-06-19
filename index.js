@@ -77,10 +77,61 @@ app.get('/stats/daily', (req, res, next) => {
   return next()
 }, queryHandler)
 
+
 app.get('/poi', (req, res, next) => {
   req.sqlQuery = `
     SELECT *
     FROM public.poi;
+  `
+  return next()
+}, queryHandler)
+
+app.get('/events/hourly_name', (req, res, next) => {
+  req.sqlQuery = `
+    SELECT date, hour, name, events, lat, lon
+    FROM public.hourly_events
+	LEFT JOIN public.poi ON public.hourly_events.poi_id = public.poi.poi_id
+    ORDER BY date, hour
+    LIMIT 168;
+  `
+  return next()
+}, queryHandler)
+
+app.get('/events/daily_name', (req, res, next) => {
+  req.sqlQuery = `
+    SELECT date, name, SUM(events) AS events, lat, lon
+    FROM public.hourly_events
+	LEFT JOIN public.poi ON public.hourly_events.poi_id = public.poi.poi_id
+    GROUP BY date, name, lat, lon
+    ORDER BY date
+    LIMIT 7;
+  `
+  return next()
+}, queryHandler)
+
+app.get('/stats/hourly_name', (req, res, next) => {
+  req.sqlQuery = `
+    SELECT date, hour, name, impressions, clicks, revenue, lat, lon
+    FROM public.hourly_stats
+	LEFT JOIN public.poi ON public.hourly_stats.poi_id = public.poi.poi_id
+    ORDER BY date, hour
+    LIMIT 168;
+  `
+  return next()
+}, queryHandler)
+
+app.get('/stats/daily_name', (req, res, next) => {
+  req.sqlQuery = `
+    SELECT date, name,
+        SUM(impressions) AS impressions,
+        SUM(clicks) AS clicks,
+        SUM(revenue) AS revenue,
+		lat, lon
+    FROM public.hourly_stats
+	LEFT JOIN public.poi ON public.hourly_stats.poi_id = public.poi.poi_id
+    GROUP BY date, name, lat, lon
+    ORDER BY date
+    LIMIT 7;
   `
   return next()
 }, queryHandler)
