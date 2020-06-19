@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import Fuse from "fuse.js";
 
 const ShowTables = () => {
 	
@@ -8,8 +9,8 @@ const ShowTables = () => {
 	
 	const getData = async () => {
 		try {
-			// const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated to localhost
-			const response = await fetch("http://localhost:5555/events/hourly");
+			const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated to localhost
+			// const response = await fetch("http://localhost:5555/events/hourly");
       		const jsonData = await response.json();
 			
 			setData(jsonData);
@@ -24,9 +25,36 @@ const ShowTables = () => {
 	
 	console.log(data);
 	
+	const fuse = new Fuse(data, {
+		keys: [
+			'name',
+			'hour',
+			'events'],
+		includeScore: true
+	})
+	
+	const [query, updateQuery] = useState('');
+	
+	
+	const results = fuse.search(query);
+	
+	const dataResults = query ? results.map(data => data.item) : data;
+	
+	console.log('results', results)
+	
+	function onSearch({ currentTarget }) {
+	  updateQuery(currentTarget.value);
+	}
+	
 	return (
 		<Fragment>
 			<h1 className="text-center mt-5">Data</h1>
+			<div className="input-group mb-3">
+			  <div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">Search</span>
+			  </div>
+			  <input type="text" value={query} onChange={onSearch} className="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" />
+			</div>
 			<table className="table mt-5 text-center">
 			<thead>
 			  <tr>
@@ -36,11 +64,11 @@ const ShowTables = () => {
 			  </tr>
 			</thead>
 			<tbody>			  
-			  {data.map(data => (
-				<tr key={data.data_id}>
-				  <td>{data.date}</td>
-				  <td>{data.hour}</td>
-				  <td>{data.events}</td>
+			  {dataResults.map(result => (
+				<tr key={result.data_id}>
+				  <td>{result.date}</td>
+				  <td>{result.hour}</td>
+				  <td>{result.events}</td>
 				</tr>
 			  ))}
 			</tbody>
