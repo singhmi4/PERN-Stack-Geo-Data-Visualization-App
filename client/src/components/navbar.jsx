@@ -1,23 +1,24 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../App.css"
 
 export default function NavbarComp() {
     return (
         <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/">Data Visualizaion Demo</Navbar.Brand>
+        <Link to="/"><Navbar.Brand>Data Visualization Demo</Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link><Link to="/">Home</Link></Nav.Link>
+          <Nav className="ml-auto">
+            <Link to="/" className="Nav-Link">Home</Link>
             <NavDropdown title="Charts &amp; Tables" id="basic-nav-dropdown">
-              <NavDropdown.Item><Link to="/chart_table/hourly_events">Hourly Events</Link></NavDropdown.Item>
-              <NavDropdown.Item><Link to="/chart_table/daily_events">Daily Events</Link></NavDropdown.Item>
+              <Link to="/chart_table/hourly_events" className="Nav-Link">Hourly Events</Link>
+              <Link to="/chart_table/daily_events" className="Nav-Link">Daily Events</Link>
               <NavDropdown.Divider />
-              <NavDropdown.Item><Link to="/chart_table/hourly_stats">Hourly Stats</Link></NavDropdown.Item>
-              <NavDropdown.Item><Link to="/chart_table/daily_stats">Daily Stats</Link></NavDropdown.Item>
+              <Link to="/chart_table/hourly_stats" className="Nav-Link">Hourly Stats</Link>
+              <Link to="/chart_table/daily_stats" className="Nav-Link">Daily Stats</Link>
             </NavDropdown>
-            <Nav.Link><Link href="/map">Geo Map</Link></Nav.Link>
+            <Link to="/map" className="Nav-Link">Geo Map</Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar> 

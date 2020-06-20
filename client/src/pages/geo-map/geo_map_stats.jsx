@@ -4,7 +4,7 @@ import ShowGeoData from '../../components/maps/GetGeoData.js';
 export default function GeoDataMap() {
     return (
         <Fragment>
-            <h2 className="text-center mt-5">Geo Data</h2>
+            <h2 className="text-center my-5">Geo Data</h2>
             <ShowGeoData />
         </Fragment>
     )

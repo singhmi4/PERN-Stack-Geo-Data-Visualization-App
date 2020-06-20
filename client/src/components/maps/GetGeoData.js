@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import "../App.css";
+import "../../App.css";
 
 const ShowGeoData = () => {
 
@@ -25,8 +25,6 @@ const ShowGeoData = () => {
     console.log(mapData);
     
     const [activeCity, setActiveCity] = React.useState(null);
-
-    
 
     return (<Fragment>
         <Map center={[52.146973, -106.647034]} zoom={4} className="mb-5">
