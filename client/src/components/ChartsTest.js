@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const ChartsTest = () => {
 	
@@ -27,13 +27,15 @@ const ChartsTest = () => {
 	
 	return (
 		<Fragment>
-			<LineChart width={800} height={400} data={data} className="mt-5 mx-auto" >
-    			<Line type="monotone" dataKey="events" stroke="#8884d8" />
-				<CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
-    			<XAxis dataKey="data_id" />
-    			<YAxis />
-				<Tooltip />
-  			</LineChart>
+			<ResponsiveContainer width={"100%"} height={400} >
+				<LineChart data={data} className="mt-5" >
+					<Line type="monotone" dataKey="events" stroke="#8884d8" />
+					<CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
+					<XAxis dataKey="data_id" />
+					<YAxis />
+					<Tooltip />
+				</LineChart>
+			</ResponsiveContainer>
 		</Fragment>
 	)
 }
