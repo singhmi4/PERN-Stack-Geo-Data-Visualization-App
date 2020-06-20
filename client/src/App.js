@@ -4,23 +4,8 @@ import './App.css';
 import NavbarComp from "./components/navbar";
 import Home from './pages/home';
 import ChartTableHourlyEvents from './pages/chart-table/chart_table_hourly_events';
-
-// Components
-
-// import ShowTables from "./components/ShowTables";
-// import ChartsTest from "./components/ChartsTest";
-// import ShowGeoData from './components/GeoData';
-
-{/* <Fragment>
-<div className="container">
-  <ChartsTest />
-  <ShowTables />
-  <ShowGeoData />
-  </div>	
- </Fragment> */}
-
-
-
+import ChartTableDailyEvents from './pages/chart-table/chart_table_daily_events';
+import GeoDataMap from './pages/geo-map/geo_map_stats';
 
 function App() {
   return (
@@ -33,6 +18,12 @@ function App() {
             </Route>
             <Route exact path="/chart_table/hourly_events">
               <ChartTableHourlyEvents />
+            </Route>
+            <Route exact path="/chart_table/daily_events">
+              <ChartTableDailyEvents />
+            </Route>
+            <Route exact path="/map">
+              <GeoDataMap />
             </Route>
           </Switch>
         </div>

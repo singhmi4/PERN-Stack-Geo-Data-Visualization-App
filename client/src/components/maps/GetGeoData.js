@@ -9,7 +9,6 @@ const ShowGeoData = () => {
 	
 	const getData = async () => {
 		try {
-			// const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly_name"); // this needs to be updated to localhost
 			const response = await fetch("http://localhost:5555/stats/map/daily");
       		const jsonData = await response.json();
 			
