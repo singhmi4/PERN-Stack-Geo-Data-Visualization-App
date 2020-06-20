@@ -5,7 +5,7 @@ import TableHourlyEvents from '../../components/tables/GetTableHourlyEvents.js';
 export default function ChartTableHourlyEvents() {
     return (
         <Fragment>
-            <h2 className="text-center mt-5">Hourly Events</h2>
+            <h1 className="text-center mt-5">Hourly Events</h1>
             <ChartHourlyEventsComp />
             <div className="mt-5"/>
             <TableHourlyEvents />

@@ -6,6 +6,7 @@ import Home from './pages/home';
 import ChartTableHourlyEvents from './pages/chart-table/chart_table_hourly_events';
 import ChartTableDailyEvents from './pages/chart-table/chart_table_daily_events';
 import ChartTableHourlyStats from './pages/chart-table/chart_table_hourly_stats';
+import ChartTableDailyStats from './pages/chart-table/chart_table_daily_stats';
 
 import GeoDataMap from './pages/geo-map/geo_map_stats';
 
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route exact path="/chart_table/hourly_stats">
               <ChartTableHourlyStats />
+            </Route>
+            <Route exact path="/chart_table/daily_stats">
+              <ChartTableDailyStats />
             </Route>
             <Route exact path="/map">
               <GeoDataMap />
