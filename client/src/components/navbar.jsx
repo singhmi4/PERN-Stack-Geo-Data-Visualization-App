@@ -5,7 +5,7 @@ import "../App.css"
 
 export default function NavbarComp() {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar sticky="top" bg="light" expand="lg">
         <Link to="/"><Navbar.Brand>Data Visualization Demo</Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
