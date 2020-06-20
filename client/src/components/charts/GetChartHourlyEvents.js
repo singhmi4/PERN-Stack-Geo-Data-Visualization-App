@@ -29,13 +29,14 @@ const ChartHourlyEventsComp = () => {
 		<Fragment>
 			<ResponsiveContainer width={"100%"} height={400} >
 				<BarChart data={data} className="mt-5" >
+					<Tooltip />
 					<Bar type="monotone" dataKey="events" stroke="#8884d8" />
 					<CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
 					<XAxis dataKey="hour" >
 						<Label value="Hours" offset={0} position="insideBottom" />
 					</XAxis>	
 					<YAxis label={{ value: 'Events', angle: -90, position: 'insideLeft' }} />
-					<Tooltip />
+					
 				</BarChart>
 			</ResponsiveContainer>
 		</Fragment>

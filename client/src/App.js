@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import NavbarComp from "./components/navbar";
@@ -12,7 +12,8 @@ import GeoDataMap from './pages/geo-map/geo_map_stats';
 
 function App() {
   return (
-      <Router>
+    <Fragment>
+        <Router>
         <NavbarComp />
         <div className="container">
           <Switch>
@@ -32,12 +33,13 @@ function App() {
               <ChartTableDailyStats />
             </Route>
             <Route exact path="/map">
-              <GeoDataMap />
+                <GeoDataMap />
             </Route>
           </Switch>
         </div>
-        
       </Router>
+    </Fragment>
+      
   );
 }
 
