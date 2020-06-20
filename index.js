@@ -111,7 +111,7 @@ app.get('/events/daily_name', (req, res, next) => {
 
 app.get('/stats/hourly_name', (req, res, next) => {
   req.sqlQuery = `
-    SELECT date, hour, name, impressions, clicks, revenue, lat, lon
+    SELECT date, hour, name, impressions, clicks, ROUND(revenue,2) AS revenue, lat, lon
     FROM public.hourly_stats
 	  LEFT JOIN public.poi ON public.hourly_stats.poi_id = public.poi.poi_id
     ORDER BY date, hour
@@ -125,7 +125,7 @@ app.get('/stats/daily_name', (req, res, next) => {
     SELECT date, name,
         SUM(impressions) AS impressions,
         SUM(clicks) AS clicks,
-        SUM(revenue) AS revenue,
+        ROUND(SUM(revenue),2) AS revenue,
 		lat, lon
     FROM public.hourly_stats
 	  LEFT JOIN public.poi ON public.hourly_stats.poi_id = public.poi.poi_id
