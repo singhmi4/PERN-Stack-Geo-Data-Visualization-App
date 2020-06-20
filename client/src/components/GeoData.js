@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-markercluster";
 import "../App.css";
 
 const ShowGeoData = () => {
@@ -26,6 +27,8 @@ const ShowGeoData = () => {
     
     const [activeCity, setActiveCity] = React.useState(null);
 
+    
+
     return (<Fragment>
         <Map center={[52.146973, -106.647034]} zoom={4} className="mb-5">
             <TileLayer
@@ -33,15 +36,19 @@ const ShowGeoData = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {mapData.map(city => (
-                <Marker key={city.poi_id} 
-                        position={[city.lat, city.lon]}
-                        onClick={() => {
-                            setActiveCity(city);
-                        }}
-                        
-                />
-            ))}
+            <MarkerClusterGroup>
+                {mapData.map((city, index) => (
+                    <Marker key={city.poi_id} 
+                            position={[city.lat, city.lon]}
+                            onClick={() => {
+                                setActiveCity(city);
+                            }}   
+                    />
+                    ))}
+            </MarkerClusterGroup>
+            
+
+            
 
             {activeCity && (
                 <Popup
