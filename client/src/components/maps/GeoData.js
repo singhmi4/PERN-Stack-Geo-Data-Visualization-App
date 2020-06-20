@@ -45,10 +45,7 @@ const ShowGeoData = () => {
                             }}   
                     />
                     ))}
-            </MarkerClusterGroup>
-            
-
-            
+            </MarkerClusterGroup>      
 
             {activeCity && (
                 <Popup
