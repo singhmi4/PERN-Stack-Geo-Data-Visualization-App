@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Fuse from "fuse.js";
 
-const ShowTables = () => {
+const TableHourlyEvents = () => {
 	
 // 	Methods
 	
@@ -10,7 +10,7 @@ const ShowTables = () => {
 	const getData = async () => {
 		try {
 			// const response = await fetch("https://sandbox-ukmlr.run-us-west2.goorm.io/events/hourly"); // this needs to be updated to localhost
-			const response = await fetch("http://localhost:5555/events/hourly");
+			const response = await fetch("http://localhost:5555/events/hourly_name");
       		const jsonData = await response.json();
 			
 			setData(jsonData);
@@ -28,6 +28,7 @@ const ShowTables = () => {
 	const fuse = new Fuse(data, {
 		keys: [
 			'name',
+			'date',
 			'hour',
 			'events'],
 		includeScore: true
@@ -48,7 +49,6 @@ const ShowTables = () => {
 	
 	return (
 		<Fragment>
-			<h1 className="text-center mt-5">Data</h1>
 			<div className="input-group mb-3">
 			  <div class="input-group-prepend">
 				<span class="input-group-text" id="basic-addon1">Search</span>
@@ -59,6 +59,7 @@ const ShowTables = () => {
 			<thead>
 			  <tr>
 				<th>Date</th>
+				<th>Location</th>
 				<th>Hour</th>
 				<th>Events</th>
 			  </tr>
@@ -67,6 +68,7 @@ const ShowTables = () => {
 			  {dataResults.map(result => (
 				<tr key={result.data_id}>
 				  <td>{result.date}</td>
+				  <td>{result.name}</td>
 				  <td>{result.hour}</td>
 				  <td>{result.events}</td>
 				</tr>
@@ -77,4 +79,4 @@ const ShowTables = () => {
 	)
 }
 
-export default ShowTables;
+export default TableHourlyEvents;

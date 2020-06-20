@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import NavbarComp from "./components/navbar";
 import Home from './pages/home';
+import ChartTableHourlyEvents from './pages/chart-table/chart_table_hourly_events';
 
 // Components
 
@@ -25,11 +26,17 @@ function App() {
   return (
       <Router>
         <NavbarComp />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/chart_table/hourly_events">
+              <ChartTableHourlyEvents />
+            </Route>
+          </Switch>
+        </div>
+        
       </Router>
   );
 }

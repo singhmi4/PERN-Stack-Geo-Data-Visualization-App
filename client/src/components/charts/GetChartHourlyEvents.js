@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, CartesianGrid, XAxis, Label, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-const ChartsTest = () => {
+const ChartHourlyEventsComp = () => {
 	
 // 	Methods
 	
@@ -28,16 +28,18 @@ const ChartsTest = () => {
 	return (
 		<Fragment>
 			<ResponsiveContainer width={"100%"} height={400} >
-				<LineChart data={data} className="mt-5" >
-					<Line type="monotone" dataKey="events" stroke="#8884d8" />
+				<BarChart data={data} className="mt-5" >
+					<Bar type="monotone" dataKey="events" stroke="#8884d8" />
 					<CartesianGrid stroke="#ccc" strokeDasharray="1 1" />
-					<XAxis dataKey="data_id" />
-					<YAxis />
+					<XAxis dataKey="hour" >
+						<Label value="Hours" offset={0} position="insideBottom" />
+					</XAxis>	
+					<YAxis label={{ value: 'Events', angle: -90, position: 'insideLeft' }} />
 					<Tooltip />
-				</LineChart>
+				</BarChart>
 			</ResponsiveContainer>
 		</Fragment>
 	)
 }
 
-export default ChartsTest;
+export default ChartHourlyEventsComp;

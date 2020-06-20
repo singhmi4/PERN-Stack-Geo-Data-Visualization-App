@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
+import ChartHourlyEventsComp from '../components/charts/GetChartHourlyEvents.js';
+
 
 export default function Home() {
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <Fragment>
+            <ChartHourlyEventsComp />
+        </Fragment>
     )
 }
