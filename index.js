@@ -136,6 +136,22 @@ app.get('/stats/daily_name', (req, res, next) => {
   return next()
 }, queryHandler)
 
+app.get('/stats/map/daily', (req, res, next) => {
+  req.sqlQuery = `
+    SELECT public.hourly_stats.poi_id, name,
+        SUM(impressions) AS impressions,
+        SUM(clicks) AS clicks,
+        SUM(revenue) AS revenue,
+		    lat, lon
+    FROM public.hourly_stats
+	LEFT JOIN public.poi ON public.hourly_stats.poi_id = public.poi.poi_id
+    GROUP BY public.hourly_stats.poi_id, name, lat, lon
+    ORDER BY public.hourly_stats.poi_id
+    LIMIT 7;
+  `
+  return next()
+}, queryHandler)
+
 app.listen(process.env.PORT || 5555, (err) => {
   if (err) {
     console.error(err)
