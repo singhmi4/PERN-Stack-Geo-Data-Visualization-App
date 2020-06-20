@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Icon } from "leaflet";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "../App.css";
 
@@ -23,7 +22,9 @@ const ShowGeoData = () => {
     getData();
   }, []);
 	
-	console.log(mapData);
+    console.log(mapData);
+    
+    const [activeCity, setActiveCity] = React.useState(null);
 
     return (<Fragment>
         <Map center={[52.146973, -106.647034]} zoom={4} className="mb-5">
@@ -32,11 +33,31 @@ const ShowGeoData = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {mapData.map(data => (
-                <Marker key={data.poi_id} 
-                        position={[data.lat, data.lon]}
+            {mapData.map(city => (
+                <Marker key={city.poi_id} 
+                        position={[city.lat, city.lon]}
+                        onClick={() => {
+                            setActiveCity(city);
+                        }}
+                        
                 />
             ))}
+
+            {activeCity && (
+                <Popup
+                    position={[activeCity.lat, activeCity.lon]}
+                    onClose={() => {
+                        setActiveCity(null);
+                    }}
+                >
+                 <div>
+                    <h2>{activeCity.name}</h2>
+                    <p>Impressions: {activeCity.impressions}</p>
+                    <p>Clicks: {activeCity.clicks}</p> 
+                    <p>Revenue: ${activeCity.revenue}</p>      
+                </div>   
+                </Popup>
+            )}
 
         </Map>
     </Fragment>
