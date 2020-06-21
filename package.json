@@ -10,9 +10,8 @@
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "dev": "nodemon index.js"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EQWorks/ws-product-nodejs.git"
