@@ -1,10 +1,7 @@
 import React from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
 
 export default function Home() {
-
-    const history = useHistory();
 
     return (
         <Jumbotron className="mt-5">

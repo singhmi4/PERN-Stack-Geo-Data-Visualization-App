@@ -14,29 +14,33 @@ function App() {
   return (
     <Fragment>
         <Router>
-        <NavbarComp />
-        <div className="container">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/chart_table/hourly_events">
-              <ChartTableHourlyEvents />
-            </Route>
-            <Route exact path="/chart_table/daily_events">
-              <ChartTableDailyEvents />
-            </Route>
-            <Route exact path="/chart_table/hourly_stats">
-              <ChartTableHourlyStats />
-            </Route>
-            <Route exact path="/chart_table/daily_stats">
-              <ChartTableDailyStats />
-            </Route>
-            <Route exact path="/map">
-                <GeoDataMap />
-            </Route>
-          </Switch>
-        </div>
+          <NavbarComp />
+            <div className="container">
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/chart_table/hourly_events">
+                  <ChartTableHourlyEvents />
+                </Route>
+                <Route exact path="/chart_table/daily_events">
+                  <ChartTableDailyEvents />
+                </Route>
+                <Route exact path="/chart_table/hourly_stats">
+                  <ChartTableHourlyStats />
+                </Route>
+                <Route exact path="/chart_table/daily_stats">
+                  <ChartTableDailyStats />
+                </Route>
+                <Route exact path="/map">
+                    <GeoDataMap />
+                </Route>
+                {/* Catch All Route */}
+                <Route>
+                  <Home />
+                </Route>
+              </Switch>
+            </div>
       </Router>
     </Fragment>
       

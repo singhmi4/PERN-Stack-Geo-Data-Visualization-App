@@ -9,7 +9,7 @@ const ShowGeoData = () => {
 	
 	const getData = async () => {
 		try {
-			const response = await fetch("http://localhost:5555/stats/map/daily");
+			const response = await fetch("/stats/map/daily");
       		const jsonData = await response.json();
 			
 			setMapData(jsonData);

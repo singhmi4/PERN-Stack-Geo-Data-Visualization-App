@@ -4,6 +4,7 @@ const pg = require('pg')
 const cors = require('cors')
 const customRedisRateLimiter = require('./middlewares/rateLimiter')
 const app = express()
+const path = require('path')
 
 // configs come from standard PostgreSQL env vars
 // https://www.postgresql.org/docs/9.6/static/libpq-envars.html
@@ -27,6 +28,13 @@ app.use(cors())
 
 // Rate Limiter for all Requests
 app.use(customRedisRateLimiter)
+
+if (process.env.NODE_ENV === "production") {
+  // serve static content
+  app.use(express.static(path.join(__dirname, "client/build")))
+}
+
+// Routes
 
 app.get('/', (req, res) => {
   res.send('Welcome to EQ Works 😎')
@@ -151,6 +159,11 @@ app.get('/stats/map/daily', (req, res, next) => {
   `
   return next()
 }, queryHandler)
+
+// Catch-all route to redirect to home page
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/pagenotfound.html"));
+})
 
 app.listen(process.env.PORT || 5555, (err) => {
   if (err) {
