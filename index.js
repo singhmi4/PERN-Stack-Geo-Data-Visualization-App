@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const pg = require('pg')
 const cors = require('cors')
-const customRedisRateLimiter = require('./middlewares/rateLimiter')
+// const customRedisRateLimiter = require('./middlewares/rateLimiter')
 const app = express()
 const path = require('path')
 
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Rate Limiter for all Requests
-app.use(customRedisRateLimiter)
+// app.use(customRedisRateLimiter)
 
 // Routes
 

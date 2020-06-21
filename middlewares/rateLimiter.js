@@ -13,7 +13,6 @@ const WINDOW_LOG_INTERVAL_IN_HOURS = 1
 module.exports = function (req, res, next) {
     try {
 
-      // // const redisClient = redis.createClient()
       // if (process.env.REDISTOGO_URL) {
       //   const rtg   = require("url").parse(process.env.REDISTOGO_URL);
       //   redisClient = redis.createClient(rtg.port, rtg.hostname);
