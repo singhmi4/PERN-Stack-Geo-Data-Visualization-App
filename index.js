@@ -26,13 +26,15 @@ const queryHandler = (req, res, next) => {
 
 app.use(cors())
 
-// Rate Limiter for all Requests
-app.use(customRedisRateLimiter)
+
 
 if (process.env.NODE_ENV === "production") {
   // serve static content
   app.use(express.static(path.join(__dirname, "client/build")))
 }
+
+// Rate Limiter for all Requests
+app.use(customRedisRateLimiter)
 
 // Routes
 
