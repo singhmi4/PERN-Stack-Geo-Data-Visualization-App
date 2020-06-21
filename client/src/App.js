@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import NavbarComp from "./components/navbar";
-import Footer from "./components/footer";
 import Home from './pages/home';
 import ChartTableHourlyEvents from './pages/chart-table/chart_table_hourly_events';
 import ChartTableDailyEvents from './pages/chart-table/chart_table_daily_events';
@@ -38,7 +37,6 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <Footer />
       </Router>
     </Fragment>
       

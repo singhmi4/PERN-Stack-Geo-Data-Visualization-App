@@ -13,7 +13,7 @@ export default function Home() {
                 This app utilizes data fetched from a SQL Database for data visualization purposes.
             </p>
             <p>
-                <Button variant="primary" onClick={() => history.push('/map')} >Click Here For Geo Data Visualization!</Button>
+                <Button variant="primary" href="https://github.com/singhmi4/ws-product-nodejs-EQWorks" target="_blank" >Source Code</Button>
             </p>
         </Jumbotron>
     )

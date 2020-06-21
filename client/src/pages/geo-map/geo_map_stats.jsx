@@ -6,6 +6,7 @@ export default function GeoDataMap() {
         <Fragment>
             <h1 className="text-center my-5">Geo Data</h1>
             <ShowGeoData />
+            <div className="mb-5"></div>
         </Fragment>
     )
 }
