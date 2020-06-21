@@ -3,18 +3,28 @@
 const moment = require('moment')
 const redis = require('redis')
 
-const redisClient = redis.createClient()
+let redisClient;
 const WINDOW_SIZE_IN_HOURS = 24
 const MAX_WINDOW_REQUEST_COUNT = 2400
 const WINDOW_LOG_INTERVAL_IN_HOURS = 1
 
 module.exports = function (req, res, next) {
     try {
+
+      // const redisClient = redis.createClient()
+      if (process.env.REDISTOGO_URL) {
+        const rtg   = require("url").parse(process.env.REDISTOGO_URL);
+        redisClient = redis.createClient(rtg.port, rtg.hostname);
+      } else {
+        redisClient = redis.createClient();
+      }
+
       // check that redis client exists
       if (!redisClient) {
         throw new Error('Redis client does not exist!');
         process.exit(1);
       }
+    
       // fetch records of current user using IP address, returns null when no record is found
       redisClient.get(req.ip, function(err, record) {
         if (err) throw err;
