@@ -36,9 +36,9 @@ if (process.env.NODE_ENV === "production") {
 
 // Routes
 
-app.get('/', (req, res) => {
-  res.send('Welcome to EQ Works 😎')
-})
+// app.get('/', (req, res) => {
+//   res.send('Welcome to EQ Works 😎')
+// })
 
 app.get('/events/hourly', (req, res, next) => {
   req.sqlQuery = `
