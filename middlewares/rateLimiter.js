@@ -1,15 +1,16 @@
 // code adapted from https://blog.logrocket.com/rate-limiting-node-js/
 
-const moment = require('moment')
+import moment from 'moment';
+import redis from 'redis';
 
 // const redisClient = (process.env.REDIS_URL) ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
-const redisClient = require('redis').createClient(process.env.REDIS_URL);
+const redisClient = redis.createClient(process.env.REDIS_URL);
 
 const WINDOW_SIZE_IN_HOURS = 24
 const MAX_WINDOW_REQUEST_COUNT = 2400
 const WINDOW_LOG_INTERVAL_IN_HOURS = 1
 
-module.exports = function (req, res, next) {
+export const customRedisRateLimiter = (req, res, next) => {
     try {
 
       // if (process.env.REDISTOGO_URL) {
