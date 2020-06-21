@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const pg = require('pg')
 const cors = require('cors')
-// const customRedisRateLimiter = require('./middlewares/rateLimiter')
+const customRedisRateLimiter = require('./middlewares/rateLimiter')
 const app = express()
 
 // configs come from standard PostgreSQL env vars
@@ -26,7 +26,7 @@ const queryHandler = (req, res, next) => {
 app.use(cors())
 
 // Rate Limiter for all Requests
-// app.use(customRedisRateLimiter)
+app.use(customRedisRateLimiter)
 
 app.get('/', (req, res) => {
   res.send('Welcome to EQ Works 😎')

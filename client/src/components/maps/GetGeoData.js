@@ -55,7 +55,7 @@ const ShowGeoData = () => {
                     <h2>{activeCity.name}</h2>
                     <p>Impressions: {activeCity.impressions}</p>
                     <p>Clicks: {activeCity.clicks}</p> 
-                    <p>Revenue: ${activeCity.revenue}</p>      
+                    <p>Revenue: $ {activeCity.revenue}</p>      
                 </div>   
                 </Popup>
             )}
