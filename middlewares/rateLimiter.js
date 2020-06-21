@@ -3,7 +3,8 @@
 const moment = require('moment')
 const redis = require('redis')
 
-let redisClient;
+const redisClient = (process.env.REDIS_URL) ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
+
 const WINDOW_SIZE_IN_HOURS = 24
 const MAX_WINDOW_REQUEST_COUNT = 2400
 const WINDOW_LOG_INTERVAL_IN_HOURS = 1
@@ -11,15 +12,15 @@ const WINDOW_LOG_INTERVAL_IN_HOURS = 1
 module.exports = function (req, res, next) {
     try {
 
-      // const redisClient = redis.createClient()
-      if (process.env.REDISTOGO_URL) {
-        const rtg   = require("url").parse(process.env.REDISTOGO_URL);
-        redisClient = redis.createClient(rtg.port, rtg.hostname);
+      // // const redisClient = redis.createClient()
+      // if (process.env.REDISTOGO_URL) {
+      //   const rtg   = require("url").parse(process.env.REDISTOGO_URL);
+      //   redisClient = redis.createClient(rtg.port, rtg.hostname);
 
-        redisClient.auth(rtg.auth.split(":")[1]);
-      } else {
-        redisClient = redis.createClient();
-      }
+      //   redisClient.auth(rtg.auth.split(":")[1]);
+      // } else {
+      //   redisClient = redis.createClient();
+      // }
 
       // check that redis client exists
       if (!redisClient) {
