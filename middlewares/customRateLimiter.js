@@ -37,7 +37,7 @@ module.exports = (req, res, next) => {
           };
           newRecord.push(requestLog);
           redisClient.set(req.ip, JSON.stringify(newRecord));
-          next();
+          return next();
         }
         // if record is found, parse it's value and calculate number of requests users has made within the last window
         let data = JSON.parse(record);
@@ -52,6 +52,7 @@ module.exports = (req, res, next) => {
           return accumulator + entry.requestCount;
         }, 0);
         // if number of requests made is greater than or equal to the desired maximum, return error
+        console.log('Total Request Count', totalWindowRequestsCount);
         if (totalWindowRequestsCount >= MAX_WINDOW_REQUEST_COUNT) {
             res
                 .status(429)
