@@ -2,6 +2,7 @@
 
 const redis = require('redis');
 const moment = require('moment');
+const path = require('path')
 
 const redisClient = (process.env.NODE_ENV === "production") ? redis.createClient(process.env.REDIS_URL) : redis.createClient();
 
