@@ -28,14 +28,14 @@ const queryHandler = (req, res, next) => {
 app.use(cors())
 
 
+// Rate Limiter for all Requests
+app.use(customRateLimiter)
 
 if (process.env.NODE_ENV === "production") {
   // serve static content
   app.use(express.static(path.join(__dirname, "client/build")))
 }
 
-// Rate Limiter for all Requests
-app.use(customRateLimiter)
 
 // Routes
 
@@ -167,6 +167,8 @@ app.get('/stats/map/daily', (req, res, next) => {
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build/pagenotfound.html"));
 })
+
+
 
 app.listen(process.env.PORT || 5555, (err) => {
   if (err) {
